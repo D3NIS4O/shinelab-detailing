@@ -8,69 +8,84 @@
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
   :root { --navy: #0a1628; --cyan: #22d3ee; --card: #101f38; --text: #b8c4d6; }
   body { background: var(--navy); color: var(--text); line-height: 1.6; }
-  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 6%; background: rgba(10,22,40,.9);
-        border-bottom: 1px solid rgba(34,211,238,.15); position: sticky; top: 0; z-index: 10; }
-  .logo { font-size: 1.4rem; font-weight: 800; color: #fff; }
+  nav { position: fixed; width: 100%; top: 0; z-index: 100; background: rgba(10,22,40,.92); backdrop-filter: blur(8px);
+        display: flex; justify-content: space-between; align-items: center; padding: 16px 6%; border-bottom: 1px solid rgba(34,211,238,.15); }
+  .logo { font-size: 1.3rem; font-weight: 800; color: #fff; }
   .logo span { color: var(--cyan); }
-  nav a { color: #fff; text-decoration: none; letter-spacing: 1px; font-size: .92rem; }
+  nav ul { display: flex; gap: 26px; list-style: none; }
+  nav a { color: #fff; text-decoration: none; font-size: .9rem; letter-spacing: 1px; transition: .3s; }
   nav a:hover { color: var(--cyan); }
-  header { text-align: center; padding: 90px 8% 40px; }
-  header h1 { color: #fff; font-size: 2.4rem; }
-  header p { color: var(--cyan); text-transform: uppercase; letter-spacing: 3px; font-size: .8rem; margin-top: 8px; }
-  .score { text-align: center; margin-bottom: 40px; }
-  .score .big { font-size: 3.5rem; color: var(--cyan); font-weight: 800; }
-  .score .stars { color: var(--cyan); font-size: 1.4rem; }
-  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 6% 90px; }
-  .review { background: var(--card); border: 1px solid rgba(34,211,238,.12); border-radius: 16px; padding: 30px; transition: .3s; }
-  .review:hover { border-color: var(--cyan); transform: translateY(-5px); }
-  .review .stars { color: var(--cyan); letter-spacing: 3px; margin-bottom: 12px; }
-  .review p { font-style: italic; margin-bottom: 18px; }
+  .nav-cta { background: linear-gradient(90deg, var(--cyan), #818cf8); color: #06121f !important; padding: 9px 22px; border-radius: 30px; font-weight: 700; }
+  .hero { display: grid; grid-template-columns: 1.3fr 1fr; min-height: 60vh; padding-top: 60px; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 60px 7%;
+               background: radial-gradient(ellipse at bottom left, rgba(34,211,238,.15), transparent 55%), var(--navy); }
+  .hero-left h1 { font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; font-weight: 800; }
+  .hero-left h1 span { background: linear-gradient(90deg, var(--cyan), #818cf8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero-right { background: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1000') center/cover; min-height: 280px; }
+  .score { display: flex; gap: 40px; margin-top: 30px; }
+  .score b { display: block; font-size: 1.9rem; color: var(--cyan); }
+  .score small { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; }
+  section { padding: 70px 7%; }
+  .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; max-width: 1100px; }
+  .review { background: var(--card); border-left: 3px solid var(--cyan); border-radius: 0 14px 14px 0; padding: 28px; transition: .3s; }
+  .review:hover { transform: translateX(8px); box-shadow: -8px 12px 30px rgba(0,0,0,.35); }
+  .review .stars { color: var(--cyan); letter-spacing: 3px; margin-bottom: 10px; }
+  .review p { font-style: italic; margin-bottom: 16px; font-size: .96rem; }
   .review .who { display: flex; align-items: center; gap: 12px; }
-  .review .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), #818cf8);
-                    display: flex; align-items: center; justify-content: center; color: #06121f; font-weight: 800; }
-  .review .who h3 { color: #fff; font-size: 1rem; }
+  .review .avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), #818cf8);
+                    display: flex; align-items: center; justify-content: center; color: #06121f; font-weight: 800; font-size: .9rem; }
+  .review .who h3 { color: #fff; font-size: .98rem; }
   .review .who small { color: #6b7c96; }
-  footer { padding: 26px; text-align: center; font-size: .85rem; color: #5a6b84; border-top: 1px solid rgba(34,211,238,.1); }
+  footer { padding: 24px 7%; font-size: .82rem; color: #5a6b84; border-top: 1px solid rgba(34,211,238,.1); }
+  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } nav ul { display: none; } }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">SHINE<span>LAB</span> DETAILING</div>
-  <a href="index.html">← Back to Home</a>
+  <ul>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#packages">Packages</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Book Now</a></li>
+  </ul>
 </nav>
 
-<header>
-  <h1>Customer Reviews</h1>
-  <p>What Varna drivers say about us</p>
+<header class="hero">
+  <div class="hero-left">
+    <h1>Customer <span>Reviews</span></h1>
+    <div class="score">
+      <div><b>4.9 ★</b><small>Average rating</small></div>
+      <div><b>180+</b><small>Google reviews</small></div>
+      <div><b>97%</b><small>Would recommend</small></div>
+    </div>
+  </div>
+  <div class="hero-right" role="img" aria-label="Freshly polished car"></div>
 </header>
 
-<div class="score">
-  <div class="big">4.9</div>
-  <div class="stars">★★★★★</div>
-  <p>Based on 180+ Google reviews</p>
-</div>
-
-<div class="reviews-grid">
-  <div class="review"><div class="stars">★★★★★</div>
-    <p>"My 8-year-old Passat looks better than the day I bought it. The paint correction removed years of swirls. Unreal work."</p>
-    <div class="who"><div class="avatar">DK</div><div><h3>Dimitar Kolev</h3><small>VW Passat · Signature package</small></div></div></div>
-  <div class="review"><div class="stars">★★★★★</div>
-    <p>"Had the Ceramic Pro done on my new BMW. Water just slides off. Six months later it still beads like day one."</p>
-    <div class="who"><div class="avatar">IV</div><div><h3>Ivanka Vasileva</h3><small>BMW X3 · Ceramic Pro</small></div></div></div>
-  <div class="review"><div class="stars">★★★★★</div>
-    <p>"Two kids and a dog destroyed my interior. ShineLab brought it back to factory condition. Even got the milk smell out."</p>
-    <div class="who"><div class="avatar">PH</div><div><h3>Petar Hristov</h3><small>Skoda Kodiaq · Interior deep clean</small></div></div></div>
-  <div class="review"><div class="stars">★★★★★</div>
-    <p>"Professional, punctual, and honest about what my car actually needed. No upselling. Rare these days."</p>
-    <div class="who"><div class="avatar">MS</div><div><h3>Martin Stoev</h3><small>Audi A4 · Essential package</small></div></div></div>
-  <div class="review"><div class="stars">★★★★★</div>
-    <p>"They detailed my car before I sold it. Got 800 лв. more than the first offer I'd had. Best investment ever."</p>
-    <div class="who"><div class="avatar">YA</div><div><h3>Yordan Angelov</h3><small>Mazda 6 · Signature package</small></div></div></div>
-  <div class="review"><div class="stars">★★★★☆</div>
-    <p>"Booking took a few days since they're busy, but the result was worth the wait. Headlight restoration is amazing."</p>
-    <div class="who"><div class="avatar">TD</div><div><h3>Teodora Dimitrova</h3><small>Toyota Yaris · Essential package</small></div></div></div>
-</div>
+<section>
+  <div class="reviews">
+    <div class="review"><div class="stars">★★★★★</div>
+      <p>"My 8-year-old Passat looks better than the day I bought it. The paint correction removed years of swirls. Unreal work."</p>
+      <div class="who"><div class="avatar">DK</div><div><h3>Dimitar Kolev</h3><small>VW Passat · Signature</small></div></div></div>
+    <div class="review"><div class="stars">★★★★★</div>
+      <p>"Had the Ceramic Pro done on my new BMW. Water just slides off. Six months later it still beads like day one."</p>
+      <div class="who"><div class="avatar">IV</div><div><h3>Ivanka Vasileva</h3><small>BMW X3 · Ceramic Pro</small></div></div></div>
+    <div class="review"><div class="stars">★★★★★</div>
+      <p>"Two kids and a dog destroyed my interior. ShineLab brought it back to factory condition. Even got the milk smell out."</p>
+      <div class="who"><div class="avatar">PH</div><div><h3>Petar Hristov</h3><small>Skoda Kodiaq · Interior</small></div></div></div>
+    <div class="review"><div class="stars">★★★★★</div>
+      <p>"Professional, punctual, and honest about what my car actually needed. No upselling. Rare these days."</p>
+      <div class="who"><div class="avatar">MS</div><div><h3>Martin Stoev</h3><small>Audi A4 · Essential</small></div></div></div>
+    <div class="review"><div class="stars">★★★★★</div>
+      <p>"They detailed my car before I sold it. Got 800 лв. more than the first offer I'd had. Best investment ever."</p>
+      <div class="who"><div class="avatar">YA</div><div><h3>Yordan Angelov</h3><small>Mazda 6 · Signature</small></div></div></div>
+    <div class="review"><div class="stars">★★★★☆</div>
+      <p>"Booking took a few days since they're busy, but the result was worth the wait. Headlight restoration is amazing."</p>
+      <div class="who"><div class="avatar">TD</div><div><h3>Teodora Dimitrova</h3><small>Toyota Yaris · Essential</small></div></div></div>
+  </div>
+</section>
 
 <footer>© 2026 ShineLab Detailing · Varna</footer>
 
