@@ -23,7 +23,7 @@
   .hero h1 span { background: linear-gradient(90deg, var(--cyan), #818cf8); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero p { margin: 22px 0 34px; max-width: 620px; font-size: 1.15rem; }
   .btn { display: inline-block; padding: 15px 42px; background: linear-gradient(90deg, var(--cyan), #818cf8); color: #06121f;
-         font-weight: 700; border-radius: 50px; text-decoration: none; letter-spacing: 1px; transition: .25s; }
+         font-weight: 700; border-radius: 50px; text-decoration: none; letter-spacing: 1px; border: none; cursor: pointer; font-size: .95rem; transition: .25s; }
   .btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(34,211,238,.35); }
 
   section { padding: 90px 6%; }
@@ -37,6 +37,10 @@
   .svc-card .icon { font-size: 2rem; }
   .svc-card h3 { color: #fff; margin: 12px 0 8px; }
 
+  #gallery .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; max-width: 1100px; margin: auto; }
+  .gallery-grid img { width: 100%; height: 240px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(34,211,238,.12); transition: .35s; }
+  .gallery-grid img:hover { transform: scale(1.03); border-color: var(--cyan); box-shadow: 0 14px 40px rgba(34,211,238,.2); }
+
   #packages { background: linear-gradient(180deg, var(--navy), #0c1a30); }
   .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; max-width: 1100px; margin: auto; }
   .pkg { background: rgba(16,31,56,.7); border: 1px solid rgba(34,211,238,.12); border-radius: 18px; padding: 42px 32px; text-align: center; transition: .3s; }
@@ -47,9 +51,16 @@
   .pkg ul { list-style: none; margin: 18px 0 28px; }
   .pkg li { padding: 9px 0; border-bottom: 1px solid rgba(184,196,214,.1); font-size: .95rem; }
 
-  .contact-wrap { text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 44px; }
-  .contact-wrap h4 { color: var(--cyan); text-transform: uppercase; letter-spacing: 2px; font-size: .8rem; margin-bottom: 6px; }
-  .contact-wrap p { color: #fff; }
+  .contact-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; max-width: 1000px; margin: auto; }
+  .info-list div { margin-bottom: 22px; }
+  .info-list h4 { color: var(--cyan); text-transform: uppercase; letter-spacing: 2px; font-size: .8rem; margin-bottom: 4px; }
+  .info-list p { color: #fff; }
+  form label { display: block; color: #fff; font-size: .8rem; text-transform: uppercase; letter-spacing: 2px; margin: 14px 0 6px; }
+  form input, form textarea { width: 100%; padding: 13px; background: var(--card); border: 1px solid rgba(34,211,238,.2); border-radius: 10px; color: #fff; font-size: 1rem; }
+  form input:focus, form textarea:focus { outline: none; border-color: var(--cyan); }
+  form textarea { min-height: 120px; resize: vertical; }
+  form .btn { margin-top: 18px; }
+  .form-msg { margin-top: 14px; color: var(--cyan); display: none; }
 
   footer { padding: 26px; text-align: center; font-size: .85rem; color: #5a6b84; border-top: 1px solid rgba(34,211,238,.1); }
   @media (max-width: 768px) { nav ul { display: none; } }
@@ -61,6 +72,7 @@
   <div class="logo">SHINE<span>LAB</span> DETAILING</div>
   <ul>
     <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#packages">Packages</a></li>
     <li><a href="#contact">Book Now</a></li>
   </ul>
@@ -79,6 +91,16 @@
     <div class="svc-card"><div class="icon">🔧</div><h3>Paint Correction</h3><p>Multi-stage machine polishing that removes swirls, scratches, and oxidation.</p></div>
     <div class="svc-card"><div class="icon">🛋️</div><h3>Interior Deep Clean</h3><p>Steam extraction, leather conditioning, and ozone treatment for a factory-fresh cabin.</p></div>
     <div class="svc-card"><div class="icon">🛡️</div><h3>PPF Protection</h3><p>Self-healing paint protection film for bumpers, hoods, and full-body coverage.</p></div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-title"><h2>Recent Work</h2><p>The proof is in the shine</p></div>
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800" alt="Detailed sports car">
+    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800" alt="Polished paintwork">
+    <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800" alt="Car after ceramic coating">
+    <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=800" alt="Classic car detail">
   </div>
 </section>
 
@@ -109,14 +131,35 @@
 <section id="contact">
   <div class="section-title"><h2>Book Your Slot</h2><p>Same-week appointments available</p></div>
   <div class="contact-wrap">
-    <div><h4>📍 Studio</h4><p>ul. Industrialna 7, Varna 9023</p></div>
-    <div><h4>📞 Phone</h4><p>+359 88 555 0192</p></div>
-    <div><h4>✉️ Email</h4><p>book@shinelab.bg</p></div>
-    <div><h4>🕕 Hours</h4><p>Mon–Sat · 09:00 – 19:00</p></div>
+    <div class="info-list">
+      <div><h4>📍 Studio</h4><p>ul. Industrialna 7, Varna 9023</p></div>
+      <div><h4>📞 Phone</h4><p>+359 88 555 0192</p></div>
+      <div><h4>✉️ Email</h4><p>book@shinelab.bg</p></div>
+      <div><h4>🕕 Hours</h4><p>Mon–Sat · 09:00 – 19:00</p></div>
+    </div>
+    <!-- To receive real messages, point the form action to a free Formspree endpoint -->
+    <form id="contactForm">
+      <label for="name">Name</label>
+      <input id="name" type="text" required placeholder="Your name">
+      <label for="email">Email</label>
+      <input id="email" type="email" required placeholder="you@example.com">
+      <label for="message">Car & Service</label>
+      <textarea id="message" required placeholder="BMW 320d — Signature package, next Friday?"></textarea>
+      <button type="submit" class="btn">Request Booking</button>
+      <p class="form-msg" id="formMsg">✅ Request received! We'll confirm your slot shortly.</p>
+    </form>
   </div>
 </section>
 
 <footer>© 2026 ShineLab Detailing · Varna</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('formMsg').style.display = 'block';
+    this.reset();
+  });
+</script>
 
 </body>
 </html>
